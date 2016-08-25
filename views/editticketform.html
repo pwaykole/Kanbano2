@@ -1,0 +1,271 @@
+<div class="row">
+  <div class="col-lg-12">
+     <h1 class="page-header">TICKETS <small>ENTER TICKET DETAILS</small></h1>
+  </div>
+</div>
+<div class="container">
+    <div class="jumbotron content">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-1" />
+                        <label class="input__label input__label--jiro" for="input-1">
+                          <span class="input__label-content input__label-content--jiro">TICKET REFERENCE</span>
+                        </label>
+                </span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 color-2">
+                <select class="cs-select cs-skin-underline">
+                    <option value="" disabled selected>SERVICE</option>
+                    <option value="1">PORTAL</option>
+                    <option value="2">SHOP</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12 color-2">
+                <select class="cs-select cs-skin-underline">
+                    <option value="" disabled selected>PRIORITY</option>
+                    <option value="1">PRIORITY 1</option>
+                    <option value="2">PRIORITY 2</option>
+                    <option value="3">PRIORITY 3</option>
+                    <option value="4">PRIORITY 4</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 color-2">
+                <select class="cs-select cs-skin-underline">
+                    <option value="" disabled selected>SIZE</option>
+                    <option value="1">M</option>
+                    <option value="2">S</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-2" />
+                        <label class="input__label input__label--jiro" for="input-2">
+                          <span class="input__label-content input__label-content--jiro">ETA</span>
+                        </label>
+                </span>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <label class="entticket-label" for="dot-{{$index}}">DEV BACKLOG</label>
+                     <p class="input-group">
+                <input type="text" class="form-control entticket" id="dot-{{$index}}" datetime-picker="dd MMM yyyy HH:mm" ng-model="DB" is-open="open.date1" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default calendar" ng-click="openCalendar($event, 'date1')"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+             <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <label class="entticket-label" for="dot-{{$index}}">READY FOR PUBLISH</label>
+                     <p class="input-group">
+                <input type="text" class="form-control entticket" id="dot-{{$index}}" datetime-picker="dd MMM yyyy HH:mm" ng-model="RFP" is-open="open.date2" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default calendar" ng-click="openCalendar($event, 'date2')"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12"></div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <label class="entticket-label" for="dot-{{$index}}">DEV BLOCKED START</label>
+                     <p class="input-group">
+                <input type="text" class="form-control entticket" id="dot-{{$index}}" datetime-picker="dd MMM yyyy HH:mm" ng-model="DBS" is-open="open.date3" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default calendar" ng-click="openCalendar($event, 'date3')"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <label class="entticket-label" for="dot-{{$index}}">DEV BLOCKED END</label>
+                    <p class="input-group">
+                <input type="text" class="form-control entticket" id="dot-{{$index}}" datetime-picker="dd MMM yyyy HH:mm" ng-model="DBE" is-open="open.date4" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default calendar" ng-click="openCalendar($event, 'date4')"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12"></div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <fieldset class="scheduler-border">
+                  <legend class="scheduler-border">REJECTED IN QA</legend>
+                    <input type="radio" name="radiog_rqa" id="pendingQA"  class="css-checkbox" checked="checked"/>
+                    <label for="pendingQA" class="css-label">YES</label>
+                    <input type="radio" name="radiog_rqa" id="approvedQA"  class="css-checkbox" />
+                    <label for="approvedQA" class="css-label">NO</label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-3" />
+                        <label class="input__label input__label--jiro" for="input-3">
+                          <span class="input__label-content input__label-content--jiro">MITIGATED</span>
+                        </label>
+                </span>
+            </div>
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-4" />
+                        <label class="input__label input__label--jiro" for="input-4">
+                          <span class="input__label-content input__label-content--jiro">REASON FOR REJECTION</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <fieldset class="scheduler-border">
+                  <legend class="scheduler-border">DEV REVIEW SLA MEET</legend>
+                    <input type="radio" name="radiog_drm" id="pendingDRM"  class="css-checkbox" checked="checked"/>
+                    <label for="pendingDRM" class="css-label">YES</label>
+                    <input type="radio" name="radiog_drm" id="approvedDRM" class="css-checkbox" />
+                    <label for="approvedDRM" class="css-label">NO</label>
+                </fieldset>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12"></div>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-5" />
+                        <label class="input__label input__label--jiro" for="input-5">
+                          <span class="input__label-content input__label-content--jiro">WITH MITIGATION</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-6" />
+                        <label class="input__label input__label--jiro" for="input-6">
+                          <span class="input__label-content input__label-content--jiro">REASON FOR DEV REVIEW FAILURE</span>
+                        </label>
+                </span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-7" />
+                        <label class="input__label input__label--jiro" for="input-7">
+                          <span class="input__label-content input__label-content--jiro">TOTAL HOURS SPENT</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-8" />
+                        <label class="input__label input__label--jiro" for="input-8">
+                          <span class="input__label-content input__label-content--jiro">TOTALS HOURS WASTE</span>
+                        </label>
+                </span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-9" />
+                        <label class="input__label input__label--jiro" for="input-9">
+                          <span class="input__label-content input__label-content--jiro">REASON FOR WASTE</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-10" />
+                        <label class="input__label input__label--jiro" for="input-10">
+                          <span class="input__label-content input__label-content--jiro">NET TIME SPENT</span>
+                        </label>
+                </span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-11" />
+                        <label class="input__label input__label--jiro" for="input-11">
+                          <span class="input__label-content input__label-content--jiro">MET RESOLUTION SLA</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+         <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-12" />
+                        <label class="input__label input__label--jiro" for="input-12">
+                          <span class="input__label-content input__label-content--jiro">WITH MITIGATION</span>
+                        </label>
+                </span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-13" />
+                        <label class="input__label input__label--jiro" for="input-13">
+                          <span class="input__label-content input__label-content--jiro">MITIGATION DETAILS</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <fieldset class="scheduler-border">
+                  <legend class="scheduler-border">PUBLIC LINE SLA MEET</legend>
+                    <input type="radio" name="radiog_plsm" id="pendingPLSM"  class="css-checkbox" checked="checked"/>
+                    <label for="pendingPLSM" class="css-label">YES</label>
+                    <input type="radio" name="radiog_plsm" id="approvedPLSM" class="css-checkbox" />
+                    <label for="approvedPLSM" class="css-label">NO</label>
+                </fieldset>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-12"></div>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input14" />
+                        <label class="input__label input__label--jiro" for="input-14">
+                          <span class="input__label-content input__label-content--jiro">WITH MITIGATION</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-15" />
+                        <label class="input__label input__label--jiro" for="input-15">
+                          <span class="input__label-content input__label-content--jiro">MISING PUBLISHING LINE REASON</span>
+                        </label>
+                </span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-16" />
+                        <label class="input__label input__label--jiro" for="input-16">
+                          <span class="input__label-content input__label-content--jiro">REF | TESTING SLA</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+        <div class="col-md-2 col-sm-4 col-xs-6">
+    <button type="button" class="btn btn-primary btn-sm cust-btn cust-btn1 cust-btn1b">SAVE&nbsp;&nbsp;<i class="fa fa-save"></i></button>           </div>
+        <div class="col-md-2 col-sm-4 col-xs-6">
+        <button type="button" class="btn btn-primary btn-sm cust-btn cust-btn1 cust-btn1b">RESET&nbsp;&nbsp;<i class="fa fa-refresh"></i></button>
+        </div>
+            <div class="col-md-6 col-sm-4 col-xs-12"></div>
+        </div>
+    </div>
+</div>

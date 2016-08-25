@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="angularKanban">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>KANBAN SLA</title>
+        <!-- Bootstrap core CSS -->
+        <link href="includes/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css">
+
+
+        <!-- Add custom CSS here -->
+        <link rel="stylesheet" href="includes/css/font-awesome.css">
+        <link href="includes/css/stylesheets/style.css" rel="stylesheet">
+        <link  rel="stylesheet" href="includes/css/ng-table.css" />
+        <link rel="stylesheet" href="includes/css/menu.css"/>
+        <link rel="stylesheet" href="includes/css/iconate.min.css"/>
+        <link rel="stylesheet" href="includes/css/nv.d3.min.css" />
+        <link rel="stylesheet" href="includes/css/loading.css" />
+        <!-- Add custom CSS Ends here -->
+
+    </head>
+
+    <body ng-controller="mainController">
+         <main class="loading-page">
+            <div class="loader-inner pacman">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>    
+            </div>    
+        </main>
+        <div>
+            <div ng-include src="'views/sidebar.html'"></div>
+            <div id="page-wrapper" class="container">
+                <div ui-view></div>
+            </div>
+        </div>
+
+        <!--libraries-->
+        <script src="includes/js/angular/angular.min.js"></script>
+        <script src="includes/js/angular/angular-ui-router.min.js"></script>
+        <script src="includes/js/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>
+        <script src="includes/js/jquery/jquery-1.11.0.min.js"></script>
+        <script src="includes/js/bootstrap/bootstrap.min.js"></script>
+        <script src="includes/js/underscore/underscore-min.js"></script>
+        <script src="includes/js/ngtable/ng-table.js"></script>
+        <script src="includes/js/menu/modernizr.custom.js"></script>
+        <script src="includes/js/menu/classie.js"></script>
+        <script src="includes/js/iconate/iconate.min.js"></script>
+        <script type="text/javascript" src="includes/js/menu/selectFx.js"></script>
+        <script type="text/javascript" src="includes/js/charts/Chart.js"></script>
+        <script type="text/javascript" src="includes/js/charts/tc-angular-chartjs.min.js"></script>
+        <script type="text/javascript" src="includes/js/filesaver/FileSaver.js"></script>
+        <script type="text/javascript" src="includes/js/charts/d3.min.js"></script>
+        <script type="text/javascript" src="includes/js/charts/nv.d3.min.js"></script>
+        <script type="text/javascript" src="includes/js/charts/angular-nvd3.min.js"></script>
+
+        <!-- Custom JavaScript-->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/services/allTickets.js"></script>
+        <script src="includes/js/bootstrap/datetime-picker.min.js"></script>
+        <script src="includes/js/menu/gnmenu.js"></script>
+        <script src="scripts/controllers/chart.js"></script>
+        <script src="scripts/controllers/enterTickets.js"></script>
+        <script src="scripts/controllers/editTickets.js"></script>
+        <script src="scripts/controllers/editTicketsForm.js"></script>
+        <script src="scripts/controllers/export.js"></script>
+        <script src="scripts/directives/sort.js"></script>
+        <script src="scripts/directives/modal.js"></script>
+        <script src="scripts/controllers/import.js"></script>
+        
+    </body>
+</html>

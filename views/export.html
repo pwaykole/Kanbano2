@@ -1,0 +1,177 @@
+ <div ng-show="errorsearchRef" class="alert alert-danger" style="margin-top:5%;" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Please search either By Ticket or By Dev Name or By Date.
+    </div>
+<div class="row edittckt">
+    <div class="col-md-12 col-xs-12 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" align="center">
+                <h3 class="pan_heading">EXPORT DATA</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                    <div class="form-group">
+                    <label for="req_search" class="exportlabel">TICKET REFERENCE&nbsp;<i class="fa fa-search"></i></label>
+                    <input type="text" class="form-control exportinput" id="req_search" ng-model="srchtckt" placeholder="TICKET REFERENCE" typeahead="state as state.ticketRef for state in statesWithFlags | filter:{ticketRef:$viewValue}" ng-change="srchblnk()">
+                </div>
+                    </div>
+                    <div class="col-md-1 col-xs-12 col-sm-1"><label for="req_search" class="exportlabel" style="visibility:hidden">OR &nbsp;<i class="fa fa-calendar-o"></i></label><h4>Or</h4></div>
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                    <div class="form-group">
+                    <label for="req_search" class="exportlabel">DEV NAME&nbsp;<i class="fa fa-search"></i></label>
+                    <input type="text" class="form-control exportinput" id="req_search" ng-model="srchdevnme" placeholder="DEV NAME" typeahead="dev for dev in develoname | filter:$viewValue:state" ng-change="srchblnk()">
+                </div>
+                    </div>
+                    <div class="col-md-1 col-xs-12 col-sm-1"><label for="req_search" class="exportlabel" style="visibility:hidden">OR &nbsp;<i class="fa fa-calendar-o"></i></label><h4>Or</h4></div>
+                     <div class="col-md-2 col-sm-2 col-xs-12">
+                        <label for="req_search" class="exportlabel">START DATE &nbsp;<i class="fa fa-calendar-o"></i></label>
+                          <p class="input-group">
+          <input type="text" class="form-control exportinput" datepicker-popup="{{calendar.dateFormat}}" ng-model="startDate" is-open="calendar.opened.sd" datepicker-options="calendar.dateOptions" close-text="Close" placeholder="START DATE" ng-change="srchblnk()" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default expcalendar" ng-click="calendar.open($event, 'sd')"><i class="fa fa-calendar"></i></button>
+          </span>
+        </p>
+                    </div>
+                      <div class="col-md-2 col-sm-2 col-xs-12">
+                        <label for="req_search" class="exportlabel">END DATE &nbsp;<i class="fa fa-calendar-o"></i></label>
+                        <p class="input-group">
+          <input type="text" class="form-control exportinput" datepicker-popup="{{calendar.dateFormat}}" ng-model="endDate" is-open="calendar.opened.ed" datepicker-options="calendar.dateOptions" close-text="Close" placeholder="END DATE" ng-change="srchblnk()" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default expcalendar" ng-click="calendar.open($event, 'ed')"><i class="fa fa-calendar"></i></button>
+          </span>
+        </p>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                         <label for="req_searchbutton" class="exportlabel" style="visibility:hidden;">SEARCH</label>
+                        <button type="button" class="btn btn-info" id="req_searchbutton" ng-click="searchbyall()"><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn btn-info" id="req_resetbutton" ng-click="resetsearch()"><i class="fa fa-refresh"></i></button>
+
+                </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-sm-2 col-xs-12">
+            <button type="button" class="btn btn-primary btn-sm cust-btn cust-btn1 cust-btn1b export" style="font-size:1em;" ng-click="exportData()" ng-show="(items|filter:{selected: true}).length">EXPORT&nbsp;&nbsp;<i class="fa fa-file-excel-o"></i></button>
+          </div>
+        </div>
+                <div class="table-responsive">
+
+                    <br/>
+                    <br/>
+                    <table class="table table-hover table-bordered">
+                       <thead>
+                            <tr>
+                              <th style="color: #222222;font-weight:600;text-transform:uppercase;text-align:center;">Select / All&nbsp;&nbsp;                                       <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()" /></th>
+                              <th custom-sort order="'ticketRef'" sort="sort">TICKET REFERENCE</th>
+                              <th custom-sort order="'ticketRef'" sort="sort">DEV NAME</th>
+                              <th custom-sort order="'service'" sort="sort">SERVICE</th>
+                              <th custom-sort order="'service'" sort="sort">READY FOR PUBLISH</th>
+                              <th custom-sort order="'netTimeSpent'" sort="sort">NET TIME SPENT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sort.sortingOrder:sort.reverse">
+                              <td align="center"><input type="checkbox" ng-model="item.selected" /></td>
+                              <td align="center">{{item.ticketRef}}</td>
+                              <td align="center">{{item.devname}}</td>
+                              <td align="center">{{item.service}}</td>
+                              <td align="center">{{item.readyForPublish | date:'yyyy-MM-dd'}}</td>
+                              <td align="center">{{item.netTimeSpent}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                                <td colspan="6">
+                                    <nav>
+                                        <ul class="pagination pull-right">
+                                            <li ng-class="{disabled: currentPage == 0}">
+                                                <a href ng-click="prevPage()">« Prev</a>
+                                            </li>
+
+                                            <li ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) "
+                                                ng-class="{active: n == currentPage}"
+                                            ng-click="setPage()">
+                                                <a href ng-bind="n + 1">1</a>
+                                            </li>
+
+                                            <li ng-class="{disabled: (currentPage) == pagedItems.length - 1}">
+                                                <a href ng-click="nextPage()">Next »</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </td>
+                        </tfoot>
+                    </table>
+                     <div id="exportable" style="display:none">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                               <tr>
+                                   <th>TICKET REFERENCE</th>
+                                   <th>DEV NAME</th>
+                                   <th>SERVICE</th>
+                                   <th>PRIORITY</th>
+                                   <th>SIZE</th>
+                                   <th>ETA</th>
+                                   <th>DEV BACKLOG</th>
+                                   <th>READY FOR PUBLISH</th>
+                                   <th>DEV BLOCKED START</th>
+                                   <th>DEV BLOCKED END</th>
+                                   <th>MITIGATED</th>
+                                   <th>REASON FOR REJECTION</th>
+                                   <th>DEV REVIEW</th>
+                                   <th>DEV REVIEW WITH MITIGATION</th>
+                                   <th>REASON DEV REVIEW FAIL</th>
+                                   <th>TOTAL HOURS SPENT</th>
+                                   <th>TOTAL HOURS WASTE</th>
+                                   <th>REASON FOR WASTE</th>
+                                   <th>NET TIME SPENT</th>
+                                   <th>MET RESOLUTION</th>
+                                   <th>MET RESOLUTION WITH MITIGATION</th>
+                                   <th>MET RESOLUTION WITH MITIGATION DETAILS</th>
+                                   <th>PUBLISH LINE</th>
+                                   <th>PUBLISH LINE WITH MITIGATION</th>
+                                   <th>REASON FOR MISSING PUBLISH LINE</th>
+                                   <th>REF TESTING SLA</th>
+                                   <th>CREATED DATE</th>
+                                   <th>UPDATED DATE</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in items|filter:{selected: true}">
+                                    <td><strong>{{item.ticketRef}}</strong></td>
+                                    <td>{{item.devname}}</td>
+                                    <td>{{item.service}}</td>
+                                    <td>{{item.priority}}</td>
+                                    <td>{{item.size}}</td>
+                                    <td>{{item.eta}}</td>
+                                    <td>{{item.devBackLog}}</td>
+                                    <td>{{item.readyForPublish}}</td>
+                                    <td>{{item.devBlockedStart}}</td>
+                                    <td>{{item.devBlockedEnd}}</td>
+                                    <td>{{item.mitigated}}</td>
+                                    <td>{{item.reasonForRejection}}</td>
+                                    <td>{{item.devReview}}</td>
+                                    <td>{{item.devRewWithMitigation}}</td>
+                                    <td>{{item.reasonDevRewFail}}</td>
+                                    <td>{{item.totalHrSpent}}</td>
+                                    <td>{{item.totalHrWaste}}</td>
+                                    <td>{{item.reasonForWaste}}</td>
+                                    <td>{{item.netTimeSpent}}</td>
+                                    <td>{{item.metResolution}}</td>
+                                    <td>{{item.metResWithMitigation}}</td>
+                                    <td>{{item.metResMitigationDetails}}</td>
+                                    <td>{{item.publishLine}}</td>
+                                    <td>{{item.pubLineWithMitigation}}</td>
+                                    <td>{{item.reasonForMissingPublishLine}}</td>
+                                    <td>{{item.refTestingSla}}</td>
+                                    <td>{{item.createdDate}}</td>
+                                    <td>{{item.updatedDate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

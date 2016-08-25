@@ -1,0 +1,72 @@
+<div class="row edittckt">
+    <div class="col-md-12 col-xs-12 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading" align="center">
+                <h3 class="pan_heading">TICKETS OVERVIEW</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs12">
+                        <div class="btn-group" dropdown is-open="status.isopen" style="margin-bottom:2%; border: 2px solid #222222;">
+                          <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                            <span ng-hide="filterhide">FILTER BY PRIORITY</span> <span ng-hide="filterhide1">{{priorityname}}</span> &nbsp;<span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a ui-sref="editTickets">ALL PRIORITIES</a></li>
+                            <li><a ui-sref="editTickets1({ priorityID: 'P1'})">PRIORITY 1</a></li>
+                            <li><a ui-sref="editTickets2({ priorityID: 'P2'})">PRIORITY 2</a></li>
+                            <li><a ui-sref="editTickets3({ priorityID: 'P3'})">PRIORITY 3</a></li>
+                            <li><a ui-sref="editTickets4({ priorityID: 'P4'})">PRIORITY 4</a></li>
+                          </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs12">
+                        <div class="btn-group" dropdown is-open="status2.isopen" style="margin-bottom:2%; border: 2px solid #222222;">
+                          <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                            <span ng-hide="filterhd">STATUS</span> <span ng-hide="filterhd1">{{status}}</span> &nbsp;<span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a ng-click="statuspf('pass')">PASS</a></li>
+                            <li><a ng-click="statuspf('fail')">FAIL</a></li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+                <modal title="TICKET DETAILS" visible="showModal">
+                    <pre style="height:500px;overflow-y: scroll;">{{user | json}}</pre>
+                </modal>
+                <div class="table-responsive">
+                   {{checkboxes.items}}
+                    <table ng-table="tableParams" class="table table-bordered table-hover req_table" style="cursor:pointer;" show-filter="true" >
+                            <tr class="requ_table_coll" ng-repeat="user in $data ">
+                               <!-- <td header="'ng-table/headers/checkbox.html'">
+                                    <input type="checkbox" ng-model="checkboxes.items[user.id]" />
+                                </td>-->
+                                <td data-title="'TICKET REFERENCE'" align="left" filter="{ 'ticketRef': 'text' }" ng-click="toggleModal(user)">
+                                    {{user.ticketRef}}
+                                </td>
+                                 <td data-title="'DEV NAME'" align="left" filter="{ 'devname': 'text' }" ng-click="toggleModal(user)">
+                                    {{user.devname}}
+                                </td>
+                                <td data-title="'SERVICE'" ng-click="toggleModal(user)">
+                                    {{user.service}}
+                                </td>
+                                 <td data-title="'READY FOR PUBLISH'" align="left" ng-click="toggleModal(user)">
+                                    {{user.readyForPublish}}
+                                </td>
+                                <td data-title="'NET TIME SPENT'" ng-click="toggleModal(user)">
+                                    {{user.netTimeSpent}}"
+                                </td>
+                            <td data-title="'Edit Details'" class="tt-wrapper"  align="left">
+                                <a class="fa fa-external-link" ng-click="editTickets(user.id)" style="cursor:pointer;"> <span>Edit</span></a>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--<script type="text/ng-template" id="ng-table/headers/checkbox.html">
+                        <input type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" value="" />
+                    </script>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+        <div ng-controller="menuCtrl">
+            <ul id="gn-menu" ng-model="menu" class="gn-menu-main">
+                <li class="gn-trigger">
+                    <a class="mnu-icon"><i id="icon1" ng-mouseover="icon(true)" ng-mouseleave="icon(false)" class="fa fa-bars fa-3x"></i></a>
+                    <nav class="gn-menu-wrapper">
+                        <div class="gn-scroller">
+                            <ul class="gn-menu">
+
+                                <li><a ui-sref="dashboard"><i class="fa fa-dashboard menu-icon"></i><span class="menu-link">DASHBOARD</span></a></li>
+                                <li><a ui-sref="enterTickets"><i class="fa fa-pencil menu-icon"></i></i><span class="menu-link">ENTER TICKET DETAILS</span></a></li>
+                                <li><a ui-sref="editTickets"><i class="fa fa-pencil-square-o menu-icon"></i></i><span class="menu-link">EDIT TICKET DETAILS</span></a></li>
+                                <li><a ui-sref="export"><i class="fa fa-file-excel-o menu-icon"></i></i><span class="menu-link">EXPORT SHEETS</span></a></li>
+                                 <!--<li><a ui-sref="import"><i class="fa fa-upload menu-icon"></i></i><span class="menu-link">IMPORT SHEETS</span></a></li>-->
+                            </ul>
+                        </div><!-- /gn-scroller -->
+                    </nav>
+                </li>
+            </ul>
+        </div>
+
+
+
+<!-- nested menu if required-->
+<!--<ul id="gn-menu" ng-model="menu" class="gn-menu-main">
+                <li class="gn-trigger">
+                    <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+                    <nav class="gn-menu-wrapper">
+                        <div class="gn-scroller">
+                            <ul class="gn-menu">
+
+                                <li><a href="#/"><i class="fa fa-dashboard menu-icon"></i><span class="menu-link">DASHBOARD</span></a></li>
+                                <li><a href="#/travel_request"><i class="fa fa-cab menu-icon"></i></i><span class="menu-link">TRAVEL REQUEST</span></a></li>
+
+                          <li>
+                              <ul class="gn-submenu">
+                               <li><a href="#/"><i class="fa fa-dashboard menu-icon"></i><span class="menu-link">DESTINATION</span></a></li>
+                                <li><a href="#/"><i class="fa fa-dashboard menu-icon"></i><span class="menu-link">TRAVEL MODE</span></a></li>
+                                  <li><a href="#/"><i class="fa fa-dashboard menu-icon"></i><span class="menu-link">HOTEL</span></a></li>
+                                  <li><a href="#/"><i class="fa fa-dashboard menu-icon"></i><span class="menu-link">TAXI</span></a></li>
+
+                            </ul>
+                              </li>
+
+                        <li><a href="#/travel_request"><i class="fa fa-cab menu-icon"></i></i><span class="menu-link">TRAVEL REQUEST</span></a></li>
+
+                            </ul>
+                        </div> /gn-scroller
+                    </nav>
+                </li>
+
+            </ul> -->

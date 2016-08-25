@@ -1,0 +1,293 @@
+<div class="row">
+  <div class="col-lg-12">
+     <h1 class="page-header">TICKETS <small>ENTER TICKET DETAILS</small></h1>
+  </div>
+</div>
+<div class="container">
+    <div ng-show="errorticketRef" class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        TICKET REFERENCE already exists.
+    </div>
+    <div class="jumbotron content">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-1" ng-change="verifyTicketRef()"                                                   ng-model="tickets.ticketRef" />
+                        <label class="input__label input__label--jiro" for="input-1">
+                          <span class="input__label-content input__label-content--jiro">TICKET REFERENCE</span>
+                        </label>
+                </span>
+            </div>
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-2" ng-model="tickets.devname" />
+                        <label class="input__label input__label--jiro" for="input-2">
+                          <span class="input__label-content input__label-content--jiro">DEV NAME</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-12 color-2">
+                <select class="cs-select cs-skin-underline service">
+                    <option value="" disabled selected>SERVICE</option>
+                    <option ng-repeat="s in serviceoptions" value="{{s.value}}">{{s.name}}</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 color-2">
+                <select class="cs-select cs-skin-underline size">
+                    <option value="" disabled selected>SIZE</option>
+                    <option ng-repeat="sz in sizeoptions" value="{{sz.value}}" >{{sz.name}}</option>
+                </select>
+             </div>
+        </div>
+        <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12 color-2">
+                <select class="cs-select cs-skin-underline priority">
+                    <option value="" disabled selected>PRIORITY</option>
+                    <option ng-repeat="p in priorityoptions" value="{{p.value}}">{{p.name}}</option>
+                </select>
+            </div>
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-3" ng-model="tickets.eta" ng-focus="totalhrsspent()"/>
+                        <label class="input__label input__label--jiro" for="input-3">
+                          <span class="input__label-content input__label-content--jiro">ETA</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <label class="entticket-label" for="dot-{{$index}}">DEV BACKLOG</label>
+                     <p class="input-group">
+                <input type="text" class="form-control entticket" id="dot-{{$index}}" datetime-picker="dd MMM yyyy HH:mm" ng-model="tickets.devBackLog" is-open="open.date1" ng-change="totalhrsspent()" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default calendar" ng-click="openCalendar($event, 'date1')"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+                </div>
+            </div>
+
+             <div class="col-md-2 col-sm-2 col-xs-12"></div>
+            
+             <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <label class="entticket-label" for="dot-{{$index}}">READY FOR PUBLISH</label>
+                     <p class="input-group">
+                <input type="text" class="form-control entticket" id="dot-{{$index}}" datetime-picker="dd MMM yyyy HH:mm" ng-model="tickets.readyForPublish" is-open="open.date2" ng-change="totalhrsspent()"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default calendar" ng-click="openCalendar($event, 'date2')"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <label class="entticket-label" for="dot-{{$index}}">DEV BLOCKED START</label>
+                     <p class="input-group">
+                <input type="text" class="form-control entticket" id="dot-{{$index}}" datetime-picker="dd MMM yyyy HH:mm" ng-model="tickets.devBlockedStart" is-open="open.date3" ng-change="totalhrsspent()" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default calendar" ng-click="openCalendar($event, 'date3')"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+                </div>
+            </div>
+            
+            <div class="col-md-2 col-sm-2 col-xs-12"></div>
+            
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <label class="entticket-label" for="dot-{{$index}}">DEV BLOCKED END</label>
+                    <p class="input-group">
+                <input type="text" class="form-control entticket" id="dot-{{$index}}" datetime-picker="dd MMM yyyy HH:mm" ng-model="tickets.devBlockedEnd" is-open="open.date4" ng-change="totalhrsspent()" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default calendar" ng-click="openCalendar($event, 'date4')"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-4 col-sm-4 col-xs-12">
+                <fieldset class="scheduler-border">
+                  <legend class="scheduler-border">REJECTED IN QA</legend>
+                    <input type="radio" name="radiog_rqa" id="pendingQA" value="yes" class="css-checkbox" ng-model="tickets.rejectedInQA" ng-click="rejqa('false')" />
+                    <label for="pendingQA" class="css-label">YES</label>
+                    <input type="radio" name="radiog_rqa" id="approvedQA" value="no" class="css-checkbox" ng-model="tickets.rejectedInQA"  ng-click="rejqa('true')" />
+                    <label for="approvedQA" class="css-label">NO</label>
+                </fieldset>
+            </div>
+            
+            <div class="col-md-2 col-sm-2 col-xs-12"></div>
+            
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-4" ng-model="tickets.mitigated"/>
+                        <label class="input__label input__label--jiro" for="input-4">
+                          <span class="input__label-content input__label-content--jiro">MITIGATED</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+               <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro" ng-hide="resnrejh">
+                    <input class="input__field input__field--jiro" type="text" id="input-5" ng-model="tickets.reasonForRejection" ng-disabled="tickets.rejectedInQA"/>
+                        <label class="input__label input__label--jiro" for="input-5">
+                          <span class="input__label-content input__label-content--jiro">REASON FOR REJECTION</span>
+                        </label>
+                </span>
+                 <span class="input input--jiro" ng-hide="resnrejs">
+                    <input class="input__field input__field--jiro" type="text" id="input-5" ng-model="tickets.reasonForRejection" ng-disabled="tickets.rejectedInQA!='yes'"/>
+                        <label class="input__label input__label--jiro1" for="input-5">
+                          <span class="input__label-content input__label-content--jiro" style="color:#E0E0E0">REASON FOR REJECTION</span>
+                        </label>
+                </span>
+            </div>            
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <fieldset class="scheduler-border">
+                  <legend class="scheduler-border">DEV REVIEW SLA MEET</legend>
+                    <input type="radio" name="radiog_drm" id="pendingDRM"  class="css-checkbox" value="yes" ng-model="tickets.devReview"/>
+                    <label for="pendingDRM" class="css-label">YES</label>
+                    <input type="radio" name="radiog_drm" id="approvedDRM" class="css-checkbox" value="no" ng-model="tickets.devReview" />
+                    <label for="approvedDRM" class="css-label">NO</label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-6" ng-model="tickets.devRewWithMitigation" />
+                        <label class="input__label input__label--jiro" for="input-6">
+                          <span class="input__label-content input__label-content--jiro">WITH MITIGATION</span>
+                        </label>
+                </span>
+            </div>
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-7" ng-model="tickets.reasonDevRewFail"/>
+                        <label class="input__label input__label--jiro" for="input-7">
+                          <span class="input__label-content input__label-content--jiro">REASON FOR DEV REVIEW FAILURE</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-8" ng-model="tickets.totalHrSpent" />
+                        <label class="input__label input__label--jiro" for="input-8">
+                          <span class="input__label-content input__label-content--jiro">TOTAL HOURS SPENT</span>
+                        </label>
+                </span>
+            </div>
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-9" ng-model="tickets.totalHrWaste" />
+                        <label class="input__label input__label--jiro" for="input-9">
+                          <span class="input__label-content input__label-content--jiro">TOTALS HOURS WASTE</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-10" ng-model="reasonForWaste" />
+                        <label class="input__label input__label--jiro" for="input-10">
+                          <span class="input__label-content input__label-content--jiro">REASON FOR WASTE</span>
+                        </label>
+                </span>
+            </div>
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-11" ng-model="tickets.netTimeSpent" />
+                        <label class="input__label input__label--jiro" for="input-11">
+                          <span class="input__label-content input__label-content--jiro">NET TIME SPENT</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+         <div class="row">
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-12" ng-model="tickets.metResolution" />
+                        <label class="input__label input__label--jiro" for="input-12">
+                          <span class="input__label-content input__label-content--jiro">MET RESOLUTION SLA</span>
+                        </label>
+                </span>
+            </div>
+             <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-13" ng-model="tickets.metResWithMitigation" />
+                        <label class="input__label input__label--jiro" for="input-13">
+                          <span class="input__label-content input__label-content--jiro">WITH MITIGATION</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+         <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-14" ng-model="tickets.metResMitigationDetails" />
+                        <label class="input__label input__label--jiro" for="input-14">
+                          <span class="input__label-content input__label-content--jiro">MITIGATION DETAILS</span>
+                        </label>
+                </span>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <fieldset class="scheduler-border">
+                  <legend class="scheduler-border">PUBLIC LINE SLA MEET</legend>
+                    <input type="radio" name="radiog_plsm" id="pendingPLSM"  class="css-checkbox" ng-click="mplrhd('false')" value="yes" ng-model="tickets.publishLine" />
+                    <label for="pendingPLSM" class="css-label">YES</label>
+                    <input type="radio" name="radiog_plsm" id="approvedPLSM" class="css-checkbox" ng-click="mplrhd('true')" value="no" ng-model="tickets.publishLine" />
+                    <label for="approvedPLSM" class="css-label">NO</label>
+                </fieldset>
+            </div>
+        </div>
+       <div class="row" ng-hide="mplrh" ng-show="mplrs" ng-disabled="ngdis">
+           <div class="col-md-4 col-sm-4 col-xs-12">
+               <fieldset class="scheduler-border">
+                <legend class="scheduler-border">WITH MITIGATION</legend>
+                <input type="radio" name="radio_wm" id="pendingWM"  class="css-checkbox" value="yes" ng-model="tickets.pubLineWithMitigation" />
+                <label for="pendingWM" class="css-label">YES</label>
+                <input type="radio" name="radio_wm" id="approvedWM" class="css-checkbox" value="no" ng-model="tickets.pubLineWithMitigation" />
+                <label for="approvedWM" class="css-label">NO</label>
+                </fieldset>
+            </div>
+           <div class="col-md-2 col-sm-2 col-xs-12"></div>
+           <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-16" ng-model="tickets.reasonForMissingPublishLine" />
+                        <label class="input__label input__label--jiro" for="input-16">
+                          <span class="input__label-content input__label-content--jiro">MISING PUBLISHING LINE REASON</span>
+                        </label>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+           <div class="col-md-6 col-sm-6 col-xs-12">
+                <span class="input input--jiro">
+                    <input class="input__field input__field--jiro" type="text" id="input-17" ng-model="tickets.refTestingSla" />
+                        <label class="input__label input__label--jiro" for="input-17">
+                          <span class="input__label-content input__label-content--jiro">REF | TESTING SLA</span>
+                        </label>
+                </span>
+            </div>  
+        </div>
+        <br>
+        <div class="row">
+        <div class="col-md-2 col-sm-4 col-xs-6">
+    <button type="submit" ng-disabled="errorticketRef" class="btn btn-primary btn-sm cust-btn cust-btn1 cust-btn1b">SAVE&nbsp;&nbsp;<i class="fa fa-save"></i></button>           </div>
+        <div class="col-md-2 col-sm-4 col-xs-6">
+        <button type="button" class="btn btn-primary btn-sm cust-btn cust-btn1 cust-btn1b" ng-click="reset()">RESET&nbsp;&nbsp;<i class="fa fa-refresh"></i></button>
+        </div>
+            <div class="col-md-6 col-sm-4 col-xs-12"></div>
+        </div>
+    </div>
+</div>
